@@ -33,3 +33,11 @@ public extension Array {
         return SwiftSpan(value: self, pointer: pointer, count: count)
     }
 }
+
+public extension String {
+    var utf8SwiftSpan: SwiftSpan<UTF8.CodeUnit, String> {
+        let (pointer, count) = utf8.withContiguousStorageIfAvailable({ ($0.baseAddress!, $0.count) })!
+        
+        return SwiftSpan(value: self, pointer: pointer, count: count)
+    }
+}

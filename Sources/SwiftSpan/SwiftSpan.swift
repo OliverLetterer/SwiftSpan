@@ -18,6 +18,10 @@ public struct SwiftSpan<Element, Value> {
     }
 }
 
+extension SwiftSpan: @unchecked Sendable where Value: Sendable {
+    
+}
+
 public extension Data {
     var swiftSpan: SwiftSpan<UInt8, Data> {
         let pointer = withUnsafeBytes({ return $0.baseAddress! }).bindMemory(to: UInt8.self, capacity: count)
